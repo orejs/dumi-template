@@ -1,0 +1,90 @@
+{
+  "name": "ored",
+  "version": "1.0.7",
+  "description": "An UI design language and React&Taro components implementation",
+  "title": "Ore Design",
+  "keywords": [
+    "ore",
+    "component",
+    "components",
+    "design",
+    "framework",
+    "frontend",
+    "taro",
+    "react",
+    "react-component",
+    "ui"
+  ],
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "init": "npm install -g commitizen pnpm && pnpm install && pnpm run build",
+    "build": "father-build && pnpm --filter \"@ored/*\" build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "ci": "npm install -g pnpm && pnpm install",
+    "release": "node scripts/release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "preinstall": "node ./scripts/preinstall.js",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "lib/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ored/utils": "1.0.7",
+    "react": "^17.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "chalk": "^4.1.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "dumi": "^1.1.0",
+    "enquirer": "^2.3.6",
+    "execa": "^4.0.2",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^10.0.7",
+    "minimist": "^1.2.6",
+    "prettier": "^2.2.1",
+    "semver": "^7.3.7",
+    "yorkie": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
